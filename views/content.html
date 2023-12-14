@@ -1,0 +1,94 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--  <head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>Firebase Server Auth</title>-->
+<!--    <link rel="stylesheet" href="/static/mvp.css" />-->
+<!--    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js" defer ></script>-->
+<!--    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js" defer ></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer ></script>-->
+<!--  </head>-->
+<!--  <body>-->
+<!--    <main>-->
+<!--      <section>-->
+<!--        <form id="login">-->
+<!--          <label>Login</label>-->
+<!--          <input type="text" name="login" />-->
+<!--          <label>Password</label>-->
+<!--          <input type="password" name="password" />-->
+<!--          <button>Log in</button>-->
+<!--        </form>-->
+<!--      </section>-->
+
+<!--      <script>-->
+<!--        import firebase from "firebase/compat";-->
+
+<!--        window.addEventListener("DOMContentLoaded", () => {-->
+<!--          const firebaseConfig = {-->
+<!--  apiKey: "AIzaSyAvKY2GYbAdkQIVjbyPhaouHUqBEXM85Ew",-->
+<!--  authDomain: "faced-app-8a31f.firebaseapp.com",-->
+<!--  databaseURL: "https://faced-app-8a31f-default-rtdb.asia-southeast1.firebasedatabase.app",-->
+<!--  projectId: "faced-app-8a31f",-->
+<!--  storageBucket: "faced-app-8a31f.appspot.com",-->
+<!--  messagingSenderId: "13752152738",-->
+<!--  appId: "1:13752152738:web:dd3c4609e18ab4e0135dfb",-->
+<!--  measurementId: "G-BQXLZLJ3LS"-->
+<!--};-->
+
+<!--          firebase.initializeApp(firebaseConfig);-->
+
+<!--          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);-->
+
+<!--          document-->
+<!--            .getElementById("login")-->
+<!--            .addEventListener("submit", (event) => {-->
+<!--              event.preventDefault();-->
+<!--              const login = event.target.login.value;-->
+<!--              const password = event.target.password.value;-->
+
+<!--              firebase-->
+<!--                .auth()-->
+<!--                .signInWithEmailAndPassword(content, password)-->
+<!--                .then(({ user }) => {-->
+<!--                  return user.getIdToken().then((idToken) => {-->
+<!--                    return fetch("/sessionLogin", {-->
+<!--                      method: "POST",-->
+<!--                      headers: {-->
+<!--                        Accept: "application/json",-->
+<!--                        "Content-Type": "application/json",-->
+<!--                        "CSRF-Token": Cookies.get("XSRF-TOKEN"),-->
+<!--                      },-->
+<!--                      body: JSON.stringify({ idToken }),-->
+<!--                    });-->
+<!--                  });-->
+<!--                })-->
+<!--                .then(() => {-->
+<!--                  return firebase.auth().signOut();-->
+<!--                })-->
+<!--                .then(() => {-->
+<!--                  window.location.assign("/profile");-->
+<!--                });-->
+<!--              return false;-->
+<!--            });-->
+<!--        });-->
+<!--      </script>-->
+<!--    </main>-->
+<!--  </body>-->
+<!--</html>-->
+<!-- views/content.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Welcome to the Content Page</h1>
+  <!-- Implement content for signed-in users here -->
+  <p>This is the content for signed-in users.</p>
+<p><a href="/signout">Logout</a></p>
+</body>
+</html>
